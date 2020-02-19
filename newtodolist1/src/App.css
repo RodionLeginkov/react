@@ -1,0 +1,80 @@
+body {
+  background: #f5f5f5;
+  font-family: "Sriracha", cursive;
+  color: #ead7d7;
+}
+
+.header {
+  text-align: center;
+  font: 300 48px "Sriracha", cursive;
+}
+
+.container {
+  text-align: center;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.Collection-item {
+  background: white;
+  border: 1px solid #ead7d7;
+  color: black;
+}
+.iconSelect:hover {
+  cursor: pointer;
+  opacity: 1 !important;
+  background: green;
+}
+.iconSelect {
+  height: 19px;
+  width: 24px;
+  background: red center no-repeat;
+  background-size: contain;
+  opacity: 0;
+}
+.iconDelete {
+  height: 19px;
+  width: 24px;
+  background-size: red contain;
+  opacity: 0;
+}
+
+.iconDelete:hover {
+  cursor: pointer;
+  opacity: 1 !important;
+  background-color: red;
+}
+
+.Collection-item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.todos {
+  max-height: 350px;
+  overflow: auto;
+  border: 1px solid #ead7d7;
+}
+.Form {
+  margin-top: auto;
+  text-align: left;
+}
+.InputStr {
+  width: 596px;
+  border: 2px solid #ead7d7;
+  max-width: 596px;
+}
+
+.test {
+  color: blue;
+}
+
+.selected {
+  background: lightblue;
+  text-decoration: line-through;
+}
+
+.notselected {
+  background: none;
+}
