@@ -1,12 +1,12 @@
 import React from "react";
 
-const Findintodo = () => {
-  const HandleChange = e => {
+const Findintodo = ({ compareWord }) => {
+  function HandleChange(e) {
     e.preventDefault();
-    this.setState({
-      content: e.target.value
-    });
-  };
+    console.log(e.target.value);
+    compareWord(e.target.value);
+  }
+
   return (
     <div>
       <form className="Form">
@@ -14,12 +14,10 @@ const Findintodo = () => {
           className="FindStr"
           type="text"
           onChange={HandleChange}
-          //value={this.state.content}
           placeholder="Find here"
         />
       </form>
     </div>
   );
 };
-
 export default Findintodo;

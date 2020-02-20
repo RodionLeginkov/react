@@ -5,7 +5,7 @@ class AddinTodo extends Component {
     content: ""
   };
 
-  HandleChange = e => {
+  HandleChang = e => {
     this.setState({
       content: e.target.value
     });
@@ -34,7 +34,7 @@ class AddinTodo extends Component {
           <input
             className="InputStr"
             type="text"
-            onChange={this.HandleChange}
+            onChange={this.HandleChang}
             value={this.state.content}
             placeholder="What needs to be done?..."
           />

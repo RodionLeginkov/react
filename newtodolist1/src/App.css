@@ -17,34 +17,34 @@ body {
 }
 
 .Collection-item {
-  background: white;
+  background: ead7d7;
   border: 1px solid #ead7d7;
   color: black;
 }
-.iconSelect:hover {
+/*.iconSelect:hover {
   cursor: pointer;
   opacity: 1 !important;
   background: green;
-}
-.iconSelect {
+}*/
+/*.iconSelect {
   height: 19px;
   width: 24px;
-  background: red center no-repeat;
+  background: url("./images/check1.svg") center no-repeat;
   background-size: contain;
   opacity: 0;
-}
-.iconDelete {
+}*/
+/*.iconDelete {
   height: 19px;
   width: 24px;
   background-size: red contain;
   opacity: 0;
-}
+}*/
 
-.iconDelete:hover {
+/*.iconDelete:hover {
   cursor: pointer;
   opacity: 1 !important;
   background-color: red;
-}
+}*/
 
 .Collection-item {
   display: flex;
@@ -65,6 +65,11 @@ body {
   border: 2px solid #ead7d7;
   max-width: 596px;
 }
+.FindStr {
+  width: 596px;
+  border: 2px solid #ead7d7;
+  max-width: 596p;
+}
 
 .test {
   color: blue;
@@ -77,4 +82,54 @@ body {
 
 .notselected {
   background: none;
+}
+
+.optionButton li {
+  display: inline;
+  margin-right: 5px;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  padding: 3px;
+}
+
+.optionButton li a {
+  color: pink;
+  text-decoration: none;
+}
+
+.iconDelete {
+  display: block;
+  height: 19px;
+  width: 24px;
+  background: url(./images/cross.svg) center no-repeat;
+  background-size: contain;
+  opacity: 0;
+}
+
+.goal-from-list:hover .iconDelete {
+  opacity: 0.5;
+  /* color: red; */
+}
+.iconDelete:hover {
+  cursor: pointer;
+  opacity: 1 !important;
+}
+
+/*                               */
+.iconSelect {
+  display: block;
+  height: 19px;
+  width: 24px;
+  background: url(./images/check1.svg) center no-repeat;
+  background-size: contain;
+  opacity: 0;
+}
+
+.goal-from-list:hover .iconSelect {
+  opacity: 0.5;
+  /* color: red; */
+}
+.iconSelect:hover {
+  cursor: pointer;
+  opacity: 1 !important;
 }
