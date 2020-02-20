@@ -1,78 +1,67 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import Todolist from "./Todolist";
 import AddinTodo from "./AddinTodo";
 import Findintodo from "./Findintodo";
 import Menubutton from "./Menubutton";
 import "./App.css";
 
-class App extends Component {
-  state = {
-    checkbutton: "",
-    keyWord: "",
-    todos: [
-      {
-        content: "go home",
-        id: 1,
-        checked: false,
-        backlight: "notselected",
-        status: "active"
-      },
-      {
-        content: "avc",
-        id: 2,
-        checked: false,
-        backlight: "notselected",
-        status: "active"
-      }
-    ]
+function App() {
+  const [checkbutton, setCheckbutton] = useState("");
+  const [keyWord, setKeyWord] = useState("");
+  const [todolist, setTodolist] = useState([
+    {
+      content: "go home",
+      id: 1,
+      checked: false,
+      backlight: "notselected",
+      status: "active"
+    }
+  ]);
+
+  const compareWord = word => {
+    setKeyWord(word);
   };
 
-  compareWord = word => {
-    this.setState({
-      keyWord: word
-    });
-  };
-
-  DeleteTodo = id => {
-    const todos = this.state.todos.filter(todo => {
+  const DeleteTodo = id => {
+    const todos = todolist.filter(todo => {
       return todo.id !== id;
     });
-    this.setState({
-      todos
-    });
+    setTodolist(todos);
   };
-  Addnewtodo = todo => {
-    todo.id = Math.random();
-    todo.checked = false;
-    todo.backlight = "notselected";
-    todo.status = "active";
-    const todos = [...this.state.todos, todo];
-    this.setState({
-      todos
-    });
+  const Addnewtodo = todo => {
+    const newTodo = {
+      content: todo,
+      id: Math.random(),
+      status: "active",
+      checked: false,
+      backlight: "notselected"
+    };
+
+    setTodolist(prevState => [...prevState, newTodo]);
   };
-  HandleChange = e => {
-    this.setState({
-      content: e.target.value
-    });
+  const HandleChange = e => {
+    setTodolist(prevState => [...prevState, e.target.value]);
   };
 
-  complitedButton = () => {
-    //this.state.checkbutton = "complite";
-    this.setState(prevState => ({ ...prevState, checkbutton: "complite" }));
+  const complitedButton = () => {
+    //todolist.checkbutton = "complite";
+    //setCheckbutton(prevState => ({ ...prevState, checkbutton: "complite" }));
+    setCheckbutton("complite");
   };
-  activeButton = () => {
-    // this.state.checkbutton = "active";
-    this.setState(prevState => ({ ...prevState, checkbutton: "active" }));
-  };
-
-  allButton = () => {
-    // this.state.checkbutton = "";
-    this.setState(prevState => ({ ...prevState, checkbutton: "" }));
+  const activeButton = () => {
+    // todolist.checkbutton = "active";
+    //setCheckbutton(prevState => ({ ...prevState, checkbutton: "active" }));
+    setCheckbutton("active");
   };
 
-  handleCheckbox = id => {
-    const todos = [...this.state.todos];
+  const allButton = () => {
+    // todolist.checkbutton = "";
+    //setCheckbutton(prevState => ({ ...prevState, checkbutton: "" }));
+    setCheckbutton("");
+  };
+
+  const handleCheckbox = id => {
+    const todos = [...todolist];
     todos.forEach(todo => {
       if (todo.id === id) {
         if (todo.checked === false) {
@@ -84,48 +73,42 @@ class App extends Component {
         }
       }
     });
-    this.setState({
-      todos
-    });
+    setTodolist(todos);
   };
 
-  render() {
-    let FilteredTodo = this.state.todos.filter(todo => {
-      //console.log(this.state.keyWord);
+  let FilteredTodo = todolist.filter(todo => todo.content.includes(keyWord));
+  console.log({ checkbutton });
+  if (checkbutton === "complite") {
+    FilteredTodo = todolist.filter(todo => todo.checked === true);
+  } else if (checkbutton === "active") {
+    FilteredTodo = todolist.filter(todo => todo.checked === false);
+  }
 
-      return todo.content.includes(this.state.keyWord);
-    });
-    if (this.state.checkbutton === "complite") {
-      FilteredTodo = this.state.todos.filter(todo => todo.checked === true);
-    } else if (this.state.checkbutton === "active") {
-      FilteredTodo = this.state.todos.filter(todo => todo.checked === false);
-    }
-
-    return (
-      <div className="Allpage">
-        <div className="container">
-          <div className="header">
-            <h1>Todos</h1>
-          </div>
-        </div>
-        <div className="container">
-          <Findintodo compareWord={this.compareWord} />
-          <Todolist
-            todos={FilteredTodo}
-            DeleteTodo={this.DeleteTodo}
-            handleCheckbox={this.handleCheckbox}
-          />
-
-          <AddinTodo Addnewtodo={this.Addnewtodo} />
-          <Menubutton
-            complitedButton={this.complitedButton}
-            activeButton={this.activeButton}
-            allButton={this.allButton}
-          />
+  return (
+    <div className="Allpage">
+      <div className="container">
+        <div className="header">
+          <h1>Todos</h1>
         </div>
       </div>
-    );
-  }
-}
+      <div className="container">
+        <Findintodo compareWord={compareWord} />
+        <Todolist
+          todos={FilteredTodo}
+          DeleteTodo={DeleteTodo}
+          handleCheckbox={handleCheckbox}
+        />
 
+        <AddinTodo Addnewtodo={Addnewtodo} />
+        {
+          <Menubutton
+            complitedButton={complitedButton}
+            activeButton={activeButton}
+            allButton={allButton}
+          />
+        }
+      </div>
+    </div>
+  );
+}
 export default App;

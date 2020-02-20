@@ -1,46 +1,37 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 
-class AddinTodo extends Component {
-  state = {
-    content: ""
+function AddinTodo({ Addnewtodo }) {
+  const [content, setContent] = useState("");
+
+  const HandleChang = e => {
+    setContent(e.target.value);
   };
 
-  HandleChang = e => {
-    this.setState({
-      content: e.target.value
-    });
-  };
-
-  HandleSubmit = e => {
+  const HandleSubmit = e => {
     e.preventDefault();
     const characters = /[A-Za-z0-9А-Яа-я]/;
 
-    if (characters.test(this.state.content)) {
-      this.props.Addnewtodo(this.state);
-      this.setState({
-        content: ""
-      });
+    if (characters.test(content)) {
+      Addnewtodo(content);
+      setContent("");
     } else {
-      this.setState({
-        content: ""
-      });
+      setContent("");
     }
   };
 
-  render() {
-    return (
-      <div>
-        <form className="Form" onSubmit={this.HandleSubmit}>
-          <input
-            className="InputStr"
-            type="text"
-            onChange={this.HandleChang}
-            value={this.state.content}
-            placeholder="What needs to be done?..."
-          />
-        </form>
-      </div>
-    );
-  }
+  return (
+    <div>
+      <form className="Form" onSubmit={HandleSubmit}>
+        <input
+          className="InputStr"
+          type="text"
+          onChange={HandleChang}
+          value={content}
+          placeholder="What needs to be done?..."
+        />
+      </form>
+    </div>
+  );
 }
+
 export default AddinTodo;
